@@ -8,5 +8,6 @@ Thank you to everyone who has contributed to this project!
 <!-- CONTRIBUTORS-START -->
 
 - **Anthony Velte**
+- **github-actions[bot]**
 
 <!-- CONTRIBUTORS-END -->
