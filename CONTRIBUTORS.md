@@ -8,11 +8,5 @@ Thank you to everyone who has contributed to this project!
 <!-- CONTRIBUTORS-START -->
 
 - **Anthony Velte**
-- **Claude**
-- **Copilot**
-- **copilot-swe-agent[bot]**
-- **dependabot[bot]**
-- **github-actions[bot]**
-- **Tony Bonk**
 
 <!-- CONTRIBUTORS-END -->
