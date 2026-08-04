@@ -12,9 +12,11 @@
 
 ## Project
 
-**Name:** <!-- TODO: Replace with project name -->
-**Stack:** <!-- TODO: e.g., TypeScript, Node.js, React -->
-**Description:** <!-- TODO: Brief description -->
+**Name:** skills
+**Stack:** Markdown skill definitions · shell/node tooling · GitHub Actions (validate → sign → release)
+**Description:** Curated, signed catalog of Claude Code skills with verifiable provenance and integrity.
+
+> **START HERE for any session:** [plan.md](plan.md) (execution plan) → [docs/PROJECT-DESIGN.md](docs/PROJECT-DESIGN.md) (authoritative design) → open GitHub issues (task board). These three are the complete project context; no other repo or prior session is required. Template initialization (README, workflows pruning) is itself tracked as issue #1.
 
 ## Architecture
 
