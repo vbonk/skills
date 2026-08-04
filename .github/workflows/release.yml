@@ -1,0 +1,116 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+  id-token: write # Required for Sigstore keyless signing via GitHub OIDC
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Get previous tag
+          PREV_TAG=$(git tag --sort=-v:refname | head -2 | tail -1)
+          if [ -z "$PREV_TAG" ]; then
+            # First release — log all commits
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" HEAD)
+          else
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" "$PREV_TAG"..HEAD)
+          fi
+          # Write to file for multi-line support
+          echo "$CHANGELOG" > /tmp/changelog.txt
+
+      - name: Create release
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
+        with:
+          generate_release_notes: true
+          body_path: /tmp/changelog.txt
+          draft: false
+          prerelease: ${{ contains(github.ref, '-rc') || contains(github.ref, '-beta') || contains(github.ref, '-alpha') }}
+
+      # ──────────────────────────────────────────────────────────
+      # Sigstore Release Signing
+      #
+      # Uses "keyless" signing via GitHub's OIDC provider and Sigstore's
+      # Fulcio CA. No private keys are needed — the workflow's identity
+      # token proves this build ran in this repo on this trigger.
+      # Signatures are logged to Sigstore's Rekor transparency ledger.
+      #
+      # Verifiers can confirm authenticity with:
+      #   cosign verify-blob --bundle <file>.sigstore.json <file>
+      # ──────────────────────────────────────────────────────────
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Download release source archives
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          # GitHub auto-generates source archives for every release.
+          # Download them so we can sign them.
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern '*.tar.gz' --pattern '*.zip' --dir /tmp/release-assets || true
+
+          # If no assets were downloaded (gh release download can race with
+          # release creation), fall back to direct URL download.
+          if [ -z "$(ls /tmp/release-assets/ 2>/dev/null)" ]; then
+            mkdir -p /tmp/release-assets
+            curl -sL "https://github.com/${GITHUB_REPOSITORY}/archive/refs/tags/${TAG}.tar.gz" \
+              -o "/tmp/release-assets/${GITHUB_REPOSITORY##*/}-${TAG#v}.tar.gz"
+            curl -sL "https://github.com/${GITHUB_REPOSITORY}/archive/refs/tags/${TAG}.zip" \
+              -o "/tmp/release-assets/${GITHUB_REPOSITORY##*/}-${TAG#v}.zip"
+          fi
+
+          echo "Assets to sign:"
+          ls -la /tmp/release-assets/
+
+      - name: Sign release artifacts with cosign
+        run: |
+          cd /tmp/release-assets
+          for asset in *.tar.gz *.zip; do
+            [ -f "$asset" ] || continue
+            echo "Signing: $asset"
+            cosign sign-blob "$asset" \
+              --yes \
+              --bundle "${asset}.sigstore.json"
+            echo "Created: ${asset}.sigstore.json"
+          done
+
+      - name: Upload signatures to release
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
+        with:
+          files: /tmp/release-assets/*.sigstore.json
+
+      # ──────────────────────────────────────────────────────────
+      # SBOM (Software Bill of Materials)
+      #
+      # Generates a CycloneDX SBOM from the repository and uploads
+      # it as a release asset. Required for OpenSSF Best Practices
+      # and helps downstream consumers audit dependencies.
+      # ──────────────────────────────────────────────────────────
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          format: cyclonedx-json
+          output-file: /tmp/release-assets/sbom.cyclonedx.json
+
+      - name: Upload SBOM to release
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
+        with:
+          files: /tmp/release-assets/sbom.cyclonedx.json

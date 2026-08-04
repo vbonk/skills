@@ -1,0 +1,70 @@
+# Git Attributes — Line Endings + Binary File Handling
+#
+# What this does:
+# 1. Normalizes line endings (LF) across Windows/Mac/Linux so you never
+#    get merge conflicts caused by different operating systems
+# 2. Marks secret file types (.pem, .key) as binary so git warns you
+#    if you try to commit them (extra safety net beyond .gitignore)
+# 3. Marks lock files as "generated" so GitHub collapses them in PR diffs
+#    instead of showing 5,000 lines of auto-generated changes
+#
+# Why it matters: Without this, a Windows developer and a Mac developer
+# editing the same file will create diffs on every single line — because
+# Windows uses CRLF line endings and Mac/Linux use LF. This file prevents that.
+#
+# Docs: https://git-scm.com/docs/gitattributes
+
+# Auto-detect text files and normalize line endings to LF on commit
+* text=auto
+
+# Force LF line endings for these file types (prevents CRLF issues)
+# Why: Shell scripts with CRLF line endings break on Linux/Mac.
+# YAML/JSON with mixed line endings cause confusing diffs.
+*.sh text eol=lf
+*.bash text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.editorconfig text eol=lf
+Makefile text eol=lf
+
+# Secret file types — mark as binary so git warns on changes
+# Why: Even though .gitignore blocks these, marking them as binary adds
+# a second layer of protection. If someone force-adds a .pem file, git
+# will show a "binary file changed" warning instead of displaying the key.
+*.pem binary
+*.key binary
+*.p12 binary
+*.pfx binary
+*.jks binary
+*.keystore binary
+
+# Lock files — mark as "generated" for GitHub's linguist
+# Why: Lock files are auto-generated and can be thousands of lines long.
+# Marking them as generated tells GitHub to collapse them in PR diffs,
+# so reviewers see your actual code changes — not noise.
+package-lock.json linguist-generated
+pnpm-lock.yaml linguist-generated
+yarn.lock linguist-generated
+Cargo.lock linguist-generated
+go.sum linguist-generated
+poetry.lock linguist-generated
+
+# Binary formats — tell git not to try text-diffing these
+# Why: Without this, git may try to diff images or fonts as text,
+# producing garbage output and potentially corrupting files on checkout.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary

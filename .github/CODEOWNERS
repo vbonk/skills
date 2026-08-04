@@ -1,0 +1,59 @@
+# CODEOWNERS — Automatic Review Assignment
+#
+# What this does: When someone opens a PR that changes files matching
+# a pattern below, GitHub automatically requests a review from the
+# listed owner. This ensures the right person reviews the right changes.
+#
+# Why it matters for solo devs: Even working alone, CODEOWNERS protects
+# your AI agent config files. If you use Claude Code or Cursor with
+# collaborators or in public repos, a PR that modifies CLAUDE.md or
+# .cursorrules must be reviewed by YOU — preventing prompt injection
+# attacks where someone sneaks malicious instructions into your AI config.
+#
+# Setup: Uncomment the lines below and replace @your-username with
+# your GitHub handle (e.g., @octocat). Requires branch protection with
+# "Require review from Code Owners" enabled (see docs/BRANCH-PROTECTION.md).
+#
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Format: each line is — file-pattern   @owner(s)
+#
+# === Uncomment and replace @your-username with your GitHub username ===
+#
+# Global default — all files
+# *                              @your-username
+#
+# CI/CD — workflow and action changes
+# .github/                       @your-username
+#
+# Documentation
+# *.md                           @your-username
+# docs/                          @your-username
+#
+# Security-sensitive files
+# .github/workflows/             @your-username
+# SECURITY.md                    @your-username
+#
+# AI agent configuration — PROMPT INJECTION DEFENSE
+# Why: "Prompt injection" is when someone hides malicious instructions in a
+# PR, issue, or code comment to trick an AI agent into harmful actions —
+# like revealing API keys or disabling security settings. Requiring owner
+# review on these files means no one can modify your AI's instructions
+# without your explicit approval.
+# CLAUDE.md                      @your-username
+# AGENTS.md                      @your-username
+# GEMINI.md                      @your-username
+# .cursorrules                   @your-username
+# .windsurfrules                 @your-username
+# .github/copilot-instructions.md @your-username
+# .claude/skills/                 @your-username
+# .claude/agents/                 @your-username
+#
+# Security hardening files — SECURITY DOWNGRADE DEFENSE
+# Why: These files control your repo's security protections (hooks, scanning,
+# secret detection). A PR that weakens these files should always require your
+# review — whether the change comes from a collaborator or an AI agent.
+# scripts/secure-repo.sh           @your-username
+# templates/hooks/                 @your-username
+# .github/workflows/secret-scan-pr.yml @your-username
+# .gitattributes                   @your-username

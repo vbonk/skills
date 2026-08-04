@@ -1,0 +1,527 @@
+{
+  "generated_at": "2026-03-30T19:41:48Z",
+  "template_version": "2.0.0",
+  "total_weight": 156,
+  "features": [
+    {
+      "id": "claude-md",
+      "name": "CLAUDE.md",
+      "category": "ai-config",
+      "weight": 5
+    },
+    {
+      "id": "agents-md",
+      "name": "AGENTS.md",
+      "category": "ai-config",
+      "weight": 4
+    },
+    {
+      "id": "copilot-instructions",
+      "name": "copilot-instructions.md",
+      "category": "ai-config",
+      "weight": 3
+    },
+    {
+      "id": "cursorrules",
+      "name": ".cursorrules",
+      "category": "ai-config",
+      "weight": 3
+    },
+    {
+      "id": "gemini-md",
+      "name": "GEMINI.md",
+      "category": "ai-config",
+      "weight": 3
+    },
+    {
+      "id": "windsurfrules",
+      "name": ".windsurfrules",
+      "category": "ai-config",
+      "weight": 2
+    },
+    {
+      "id": "claude-commands",
+      "name": ".claude/commands/",
+      "category": "ai-config",
+      "weight": 3
+    },
+    {
+      "id": "ci-workflow",
+      "name": "CI workflow",
+      "category": "ci-cd",
+      "weight": 5
+    },
+    {
+      "id": "ci-sha-pinned",
+      "name": "Actions SHA-pinned",
+      "category": "ci-cd",
+      "weight": 4
+    },
+    {
+      "id": "ci-permissions",
+      "name": "Explicit permissions",
+      "category": "ci-cd",
+      "weight": 3
+    },
+    {
+      "id": "dependabot",
+      "name": "dependabot.yml",
+      "category": "ci-cd",
+      "weight": 4
+    },
+    {
+      "id": "release-workflow",
+      "name": "Release workflow",
+      "category": "ci-cd",
+      "weight": 3
+    },
+    {
+      "id": "codeql",
+      "name": "CodeQL scanning",
+      "category": "security",
+      "weight": 4
+    },
+    {
+      "id": "security-md",
+      "name": "SECURITY.md",
+      "category": "security",
+      "weight": 5
+    },
+    {
+      "id": "gitignore-secrets",
+      "name": ".gitignore blocks secrets",
+      "category": "security",
+      "weight": 5
+    },
+    {
+      "id": "codeowners",
+      "name": "CODEOWNERS",
+      "category": "security",
+      "weight": 4
+    },
+    {
+      "id": "branch-protection",
+      "name": "Branch protection docs",
+      "category": "security",
+      "weight": 3
+    },
+    {
+      "id": "secure-repo-script",
+      "name": "Secure repo script",
+      "category": "security",
+      "weight": 4
+    },
+    {
+      "id": "secret-scan-workflow",
+      "name": "Secret scan PR workflow",
+      "category": "security",
+      "weight": 4
+    },
+    {
+      "id": "precommit-hook",
+      "name": "Pre-commit secrets hook",
+      "category": "security",
+      "weight": 3
+    },
+    {
+      "id": "hook-installer",
+      "name": "Hook installer script",
+      "category": "security",
+      "weight": 2
+    },
+    {
+      "id": "gitattributes",
+      "name": ".gitattributes",
+      "category": "security",
+      "weight": 3
+    },
+    {
+      "id": "fork-security",
+      "name": "Fork security guide",
+      "category": "security",
+      "weight": 2
+    },
+    {
+      "id": "contributing-md",
+      "name": "CONTRIBUTING.md",
+      "category": "community",
+      "weight": 4
+    },
+    {
+      "id": "code-of-conduct",
+      "name": "CODE_OF_CONDUCT.md",
+      "category": "community",
+      "weight": 3
+    },
+    {
+      "id": "funding-yml",
+      "name": "FUNDING.yml",
+      "category": "community",
+      "weight": 2
+    },
+    {
+      "id": "license",
+      "name": "LICENSE file",
+      "category": "community",
+      "weight": 4
+    },
+    {
+      "id": "support-md",
+      "name": "SUPPORT.md",
+      "category": "community",
+      "weight": 2
+    },
+    {
+      "id": "pr-template",
+      "name": "PR template",
+      "category": "issues",
+      "weight": 3
+    },
+    {
+      "id": "issue-templates",
+      "name": "Issue templates (3+)",
+      "category": "issues",
+      "weight": 4
+    },
+    {
+      "id": "labels-script",
+      "name": "Label setup script",
+      "category": "issues",
+      "weight": 3
+    },
+    {
+      "id": "sync-workflow",
+      "name": "Status sync workflow",
+      "category": "issues",
+      "weight": 2
+    },
+    {
+      "id": "env-example",
+      "name": ".env.example",
+      "category": "devex",
+      "weight": 3
+    },
+    {
+      "id": "editorconfig",
+      "name": ".editorconfig",
+      "category": "devex",
+      "weight": 3
+    },
+    {
+      "id": "devcontainer",
+      "name": "devcontainer.json",
+      "category": "devex",
+      "weight": 2
+    },
+    {
+      "id": "vscode-config",
+      "name": ".vscode/ settings",
+      "category": "devex",
+      "weight": 2
+    },
+    {
+      "id": "lint-config",
+      "name": "Linting config",
+      "category": "devex",
+      "weight": 3
+    },
+    {
+      "id": "changelog",
+      "name": "CHANGELOG.md",
+      "category": "docs",
+      "weight": 2
+    },
+    {
+      "id": "readme-quality",
+      "name": "README with badges + ToC",
+      "category": "docs",
+      "weight": 5
+    },
+    {
+      "id": "architecture-md",
+      "name": "ARCHITECTURE.md",
+      "category": "docs",
+      "weight": 2
+    },
+    {
+      "id": "getting-started",
+      "name": "Getting Started guide",
+      "category": "docs",
+      "weight": 4
+    },
+    {
+      "id": "doc-guide",
+      "name": "Documentation patterns guide",
+      "category": "docs",
+      "weight": 2
+    },
+    {
+      "id": "docs-index",
+      "name": "docs/README.md index",
+      "category": "docs",
+      "weight": 2
+    },
+    {
+      "id": "prod-checklist",
+      "name": "Production checklist",
+      "category": "docs",
+      "weight": 3
+    },
+    {
+      "id": "meta-ci",
+      "name": "Template self-validation",
+      "category": "ci-cd",
+      "weight": 2
+    },
+    {
+      "id": "detect-conflicts",
+      "name": "Merge conflict detection",
+      "category": "ci-cd",
+      "weight": 2
+    },
+    {
+      "id": "update-contributors",
+      "name": "Contributor tracking",
+      "category": "community",
+      "weight": 2
+    },
+    {
+      "id": "contributors-md",
+      "name": "CONTRIBUTORS.md",
+      "category": "community",
+      "weight": 2
+    },
+    {
+      "id": "sbom-release",
+      "name": "SBOM in releases",
+      "category": "security",
+      "weight": 3
+    },
+    {
+      "id": "skills-dir",
+      "name": "Claude skills directory",
+      "category": "ai-config",
+      "weight": 2
+    },
+    {
+      "id": "agents-dir",
+      "name": "Claude agents directory",
+      "category": "ai-config",
+      "weight": 2
+    }
+  ],
+  "repos": [
+    {
+      "name": "repo-template",
+      "full_name": "vbonk/repo-template",
+      "compliance_score": 94,
+      "grade": "A",
+      "features": [
+        {
+          "id": "claude-md",
+          "present": true
+        },
+        {
+          "id": "agents-md",
+          "present": true
+        },
+        {
+          "id": "copilot-instructions",
+          "present": true
+        },
+        {
+          "id": "cursorrules",
+          "present": true
+        },
+        {
+          "id": "gemini-md",
+          "present": true
+        },
+        {
+          "id": "windsurfrules",
+          "present": true
+        },
+        {
+          "id": "claude-commands",
+          "present": true
+        },
+        {
+          "id": "ci-workflow",
+          "present": true
+        },
+        {
+          "id": "ci-sha-pinned",
+          "present": true
+        },
+        {
+          "id": "ci-permissions",
+          "present": true
+        },
+        {
+          "id": "dependabot",
+          "present": true
+        },
+        {
+          "id": "release-workflow",
+          "present": true
+        },
+        {
+          "id": "codeql",
+          "present": true
+        },
+        {
+          "id": "security-md",
+          "present": true
+        },
+        {
+          "id": "gitignore-secrets",
+          "present": true
+        },
+        {
+          "id": "codeowners",
+          "present": true
+        },
+        {
+          "id": "branch-protection",
+          "present": true
+        },
+        {
+          "id": "secure-repo-script",
+          "present": true
+        },
+        {
+          "id": "secret-scan-workflow",
+          "present": true
+        },
+        {
+          "id": "precommit-hook",
+          "present": true
+        },
+        {
+          "id": "hook-installer",
+          "present": true
+        },
+        {
+          "id": "gitattributes",
+          "present": true
+        },
+        {
+          "id": "fork-security",
+          "present": true
+        },
+        {
+          "id": "contributing-md",
+          "present": true
+        },
+        {
+          "id": "code-of-conduct",
+          "present": true
+        },
+        {
+          "id": "funding-yml",
+          "present": true
+        },
+        {
+          "id": "license",
+          "present": true
+        },
+        {
+          "id": "support-md",
+          "present": true
+        },
+        {
+          "id": "pr-template",
+          "present": true
+        },
+        {
+          "id": "issue-templates",
+          "present": true
+        },
+        {
+          "id": "labels-script",
+          "present": true
+        },
+        {
+          "id": "sync-workflow",
+          "present": true
+        },
+        {
+          "id": "env-example",
+          "present": true
+        },
+        {
+          "id": "editorconfig",
+          "present": true
+        },
+        {
+          "id": "devcontainer",
+          "present": true
+        },
+        {
+          "id": "vscode-config",
+          "present": true
+        },
+        {
+          "id": "lint-config",
+          "present": true
+        },
+        {
+          "id": "changelog",
+          "present": true
+        },
+        {
+          "id": "readme-quality",
+          "present": true
+        },
+        {
+          "id": "architecture-md",
+          "present": true
+        },
+        {
+          "id": "getting-started",
+          "present": true
+        },
+        {
+          "id": "doc-guide",
+          "present": true
+        },
+        {
+          "id": "docs-index",
+          "present": true
+        },
+        {
+          "id": "prod-checklist",
+          "present": true
+        },
+        {
+          "id": "meta-ci",
+          "present": true
+        },
+        {
+          "id": "detect-conflicts",
+          "present": false
+        },
+        {
+          "id": "update-contributors",
+          "present": false
+        },
+        {
+          "id": "contributors-md",
+          "present": false
+        },
+        {
+          "id": "sbom-release",
+          "present": true
+        },
+        {
+          "id": "skills-dir",
+          "present": false
+        },
+        {
+          "id": "agents-dir",
+          "present": false
+        }
+      ]
+    }
+  ]
+}
