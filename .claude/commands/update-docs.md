@@ -19,7 +19,7 @@ Report broken links with their source file and target.
 ### 3. README Counts Match Filesystem
 
 Check that claims in README.md match reality:
-- "7 AI" agents — count: `ls CLAUDE.md AGENTS.md GEMINI.md .cursorrules .windsurfrules .github/copilot-instructions.md .aider.conf.yml 2>/dev/null | wc -l`
+- Agent config claims — the template supports exactly two: `ls CLAUDE.md AGENTS.md 2>/dev/null | wc -l` must be 2, and docs must say Claude Code + Codex
 - "16 Workflows" — count: `find .github/workflows -name '*.yml' -type f | wc -l`
 - "5 templates" — count: `find .github/ISSUE_TEMPLATE -name '*.yml' -not -name 'config.yml' -type f | wc -l`
 - "25+ labels" — count: `grep -c 'gh label create' scripts/labels.sh`
