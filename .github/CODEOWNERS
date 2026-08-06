@@ -5,9 +5,9 @@
 # listed owner. This ensures the right person reviews the right changes.
 #
 # Why it matters for solo devs: Even working alone, CODEOWNERS protects
-# your AI agent config files. If you use Claude Code or Cursor with
+# your AI agent config files. If you use Claude Code or Codex with
 # collaborators or in public repos, a PR that modifies CLAUDE.md or
-# .cursorrules must be reviewed by YOU — preventing prompt injection
+# AGENTS.md must be reviewed by YOU — preventing prompt injection
 # attacks where someone sneaks malicious instructions into your AI config.
 #
 # Setup: Uncomment the lines below and replace @your-username with
@@ -42,10 +42,6 @@
 # without your explicit approval.
 # CLAUDE.md                      @your-username
 # AGENTS.md                      @your-username
-# GEMINI.md                      @your-username
-# .cursorrules                   @your-username
-# .windsurfrules                 @your-username
-# .github/copilot-instructions.md @your-username
 # .claude/skills/                 @your-username
 # .claude/agents/                 @your-username
 #
